@@ -15,6 +15,7 @@ class TestUser
      */
     public function handle(Request $request, Closure $next): Response
     {
+        echo "<h3 class='text-success'>We are now in TestUser Middleware.</h3>";
         return $next($request);
     }
 }

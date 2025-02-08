@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\TestUser;
 use App\Http\Middleware\ValidUser;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +18,7 @@ Route::get('logout',[UserController::class,'logout'])->name('logout');
 
 
 Route::get('dashboard', [UserController::class, 'dashboardPage'])
-    ->name('dashboard')->middleware(ValidUser::class);
+    ->name('dashboard')->middleware([ValidUser::class,TestUser::class]);
 
 Route::get('dashboard/inner', [UserController::class, 'innerPage'])
     ->name('inner');
