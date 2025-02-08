@@ -48,10 +48,18 @@ Route::get('logout',[UserController::class,'logout'])->name('logout');
 // });
 
 // group Middleware
-Route::middleware(['ok-user'])->group(function(){
-    Route::get('dashboard', [UserController::class, 'dashboardPage'])
-    ->name('dashboard');
+// Route::middleware(['ok-user'])->group(function(){
+//     Route::get('dashboard', [UserController::class, 'dashboardPage'])
+//     ->name('dashboard');
 
-    Route::get('dashboard/inner', [UserController::class, 'innerPage'])
-    ->name('inner')->withoutMiddleware('Test');
-});
+//     Route::get('dashboard/inner', [UserController::class, 'innerPage'])
+//     ->name('inner')->withoutMiddleware('Test');
+// });
+
+
+// condiction Middleware
+Route::get('dashboard', [UserController::class, 'dashboardPage'])
+->name('dashboard')->middleware(['IsUserValid:reader','Test']);
+
+Route::get('dashboard/inner', [UserController::class, 'innerPage'])
+->name('inner')->middleware(['IsUserValid:admin','Test']);
