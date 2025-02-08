@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\TestUser;
 use App\Http\Middleware\ValidUser;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,8 +25,23 @@ Route::get('logout',[UserController::class,'logout'])->name('logout');
 //     ->name('inner');
 
 // after alias
-Route::get('dashboard', [UserController::class, 'dashboardPage'])
-    ->name('dashboard')->middleware(['IsUserValid','Test']);
+// Route::get('dashboard', [UserController::class, 'dashboardPage'])
+//     ->name('dashboard')->middleware(['IsUserValid','Test']);
 
-Route::get('dashboard/inner', [UserController::class, 'innerPage'])
-    ->name('inner');
+// Route::get('dashboard/inner', [UserController::class, 'innerPage'])
+//     ->name('inner');
+
+// route group middleware
+Route::middleware(['IsUserValid','Test'])->group(function(){
+    Route::get('dashboard', [UserController::class, 'dashboardPage'])
+    ->name('dashboard');
+
+    Route::get('dashboard/inner', [UserController::class, 'innerPage'])
+    ->name('inner')->withoutMiddleware('Test');
+});
+
+// WithoutMiddleware
+// Route::withoutMiddleware(['IsUserValid','Test'])->group(function(){
+//     Route::get('dashboard/inner', [UserController::class, 'innerPage'])
+//     ->name('inner');
+// });
