@@ -27,15 +27,32 @@ class ValidUser
     // }
 
     // when need multipe  role value pass by route
+    // public function handle(Request $request, Closure $next, ...$route_roles): Response
+    // {
+    //     $user = Auth::user();
+    //     echo "<h3 class='text-primary'>We are now in ValidUser Middleware.</h3>";
+    //     echo "<h3 class='text-primary'>".Auth::user()->role."</h3>";
+    //      if(Auth::check() && in_array($user->role, $route_roles)){
+    //         return $next($request);
+
+    //     }else{
+    //         return redirect()->route('login');
+    //     }
+    // }
+
+    // when using own mehtod with pass value no need Auth::check() && .
     public function handle(Request $request, Closure $next, ...$route_roles): Response
     {
         $user = Auth::user();
         echo "<h3 class='text-primary'>We are now in ValidUser Middleware.</h3>";
         echo "<h3 class='text-primary'>".Auth::user()->role."</h3>";
-         if(Auth::check() && in_array($user->role, $route_roles)){
+         if(in_array($user->role, $route_roles)){
             return $next($request);
 
-        }else{
+        }elseif(Auth::user()->role == "reader"){
+            return redirect()->route('user');
+        }
+        else{
             return redirect()->route('login');
         }
     }
