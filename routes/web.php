@@ -17,8 +17,15 @@ Route::post('loginMatch',[UserController::class,'login'])->name('loginMatch');
 Route::get('logout',[UserController::class,'logout'])->name('logout');
 
 
+// Route::get('dashboard', [UserController::class, 'dashboardPage'])
+//     ->name('dashboard')->middleware([ValidUser::class,TestUser::class]);
+
+// Route::get('dashboard/inner', [UserController::class, 'innerPage'])
+//     ->name('inner');
+
+// after alias
 Route::get('dashboard', [UserController::class, 'dashboardPage'])
-    ->name('dashboard')->middleware([ValidUser::class,TestUser::class]);
+    ->name('dashboard')->middleware(['IsUserValid','Test']);
 
 Route::get('dashboard/inner', [UserController::class, 'innerPage'])
     ->name('inner');
