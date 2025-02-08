@@ -58,8 +58,16 @@ Route::get('logout',[UserController::class,'logout'])->name('logout');
 
 
 // condiction Middleware
+// Route::get('dashboard', [UserController::class, 'dashboardPage'])
+// ->name('dashboard')->middleware(['IsUserValid:reader','Test']);
+
+// Route::get('dashboard/inner', [UserController::class, 'innerPage'])
+// ->name('inner')->middleware(['IsUserValid:admin','Test']);
+
+// multiple condiction middleware
 Route::get('dashboard', [UserController::class, 'dashboardPage'])
-->name('dashboard')->middleware(['IsUserValid:reader','Test']);
+->name('dashboard')->middleware(['IsUserValid:admin,reader','Test']);
+//also somw work with middleware file for pass two value
 
 Route::get('dashboard/inner', [UserController::class, 'innerPage'])
 ->name('inner')->middleware(['IsUserValid:admin','Test']);
