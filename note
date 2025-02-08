@@ -1,0 +1,2 @@
+you can do middleware priority with app.php file
+you can also make different different middleware for web and api 
