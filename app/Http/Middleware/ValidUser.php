@@ -25,9 +25,9 @@ class ValidUser
         }
     }
     // after complete the request then its run
-    public function terminate(Request $request, Response $response): Void
-    {
-        echo "<h3 class='text-danger'>We are now in terminateing ValidUser Middleware.</h3>";
+    // public function terminate(Request $request, Response $response): Void
+    // {
+    //     echo "<h3 class='text-danger'>We are now in terminateing ValidUser Middleware.</h3>";
 
-    }
+    // }
 }

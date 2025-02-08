@@ -17,6 +17,15 @@ return Application::configure(basePath: dirname(__DIR__))
             'IsUserValid' => ValidUser::class,
             'Test' => TestUser::class,
         ]);
+        // $middleware->appendToGroup('ok-user',[
+        //     ValidUser::class,
+        //     TestUser::class,
+        // ]);
+        $middleware->prependToGroup('ok-user',[
+            ValidUser::class,
+            TestUser::class,
+        ]);
+        // prependToGroup // appendToGroup same  kaj kore 
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
