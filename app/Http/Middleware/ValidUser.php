@@ -24,4 +24,10 @@ class ValidUser
             return redirect()->route('login');
         }
     }
+    // after complete the request then its run
+    public function terminate(Request $request, Response $response): Void
+    {
+        echo "<h3 class='text-danger'>We are now in terminateing ValidUser Middleware.</h3>";
+
+    }
 }
