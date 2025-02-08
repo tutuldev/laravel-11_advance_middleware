@@ -1,13 +1,14 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\ValidUser;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('register','register')->name('register');
+Route::view('register','register')->name('register')->middleware(ValidUser::class);
 Route::post('registerSave',[UserController::class,'register'])->name('registerSave');
 
 Route::view('login','login')->name('login');
