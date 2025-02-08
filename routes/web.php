@@ -76,8 +76,15 @@ Route::get('logout',[UserController::class,'logout'])->name('logout');
 // ->name('inner')->middleware(['IsUserValid:admin','Test']);
 
 // own Middleware
+// Route::get('dashboard', [UserController::class, 'dashboardPage'])
+// ->name('dashboard')->middleware(["auth",'IsUserValid:admin']);
+
+// Route::get('dashboard/inner', [UserController::class, 'innerPage'])
+// ->name('inner')->middleware(["auth",'IsUserValid:admin,reader','Test']);
+
+// useing golbal middleware
 Route::get('dashboard', [UserController::class, 'dashboardPage'])
-->name('dashboard')->middleware(["auth",'IsUserValid:admin']);
+->name('dashboard');
 
 Route::get('dashboard/inner', [UserController::class, 'innerPage'])
-->name('inner')->middleware(["auth",'IsUserValid:admin,reader','Test']);
+->name('inner');

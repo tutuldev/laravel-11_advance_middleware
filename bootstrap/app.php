@@ -25,7 +25,9 @@ return Application::configure(basePath: dirname(__DIR__))
             ValidUser::class,
             TestUser::class,
         ]);
-        // prependToGroup // appendToGroup same  kaj kore 
+        // prependToGroup // appendToGroup same  kaj kore
+        // global middleware
+        $middleware->append(TestUser::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
