@@ -4,10 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class ValidUser
+class TestUser
 {
     /**
      * Handle an incoming request.
@@ -16,12 +15,6 @@ class ValidUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        echo "<h3 class='text-primary'>We are now in ValidUser Middleware.</h3>";
-         if(Auth::check()){
-            return $next($request);
-
-        }else{
-            return redirect()->route('login');
-        }
+        return $next($request);
     }
 }
